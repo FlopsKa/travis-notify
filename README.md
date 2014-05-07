@@ -1,6 +1,8 @@
 travis-notify
 =============
 
+[![Build Status](https://travis-ci.org/FlopsKa/travis-notify.svg?branch=master)](https://travis-ci.org/FlopsKa/travis-notify)
+
 Mediator for the [travis ci](https://travis-ci.org/) service. Caches the latest
 POST access of the travis service and returns the `status_message` and the
 `build_status` from this request on /notify.
