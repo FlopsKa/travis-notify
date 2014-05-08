@@ -2,3 +2,5 @@ language: ruby
 rvm:
   - 2.1.1
   - 2.1.0
+notifications:
+  webhooks: http://travis-notify.herokuapp.com/
