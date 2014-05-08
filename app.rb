@@ -35,14 +35,20 @@ class TravisWebhook < Sinatra::Base
 
   def valid_request?
     digest = Digest::SHA2.new.update("#{repo_slug}#{settings.token}")
+		puts "Digest"
+		puts digest.to_s
     digest.to_s == authorization
   end
 
   def authorization
+		puts "Authorization"
+    puts env['HTTP_AUTHORIZATION']
     env['HTTP_AUTHORIZATION']
   end
 
   def repo_slug
+		puts "Repo Slug"
+    puts env['HTTP_TRAVIS_REPO_SLUG']
     env['HTTP_TRAVIS_REPO_SLUG']
   end
 end
