@@ -2,6 +2,8 @@ require 'sinatra'
 require 'json'
 require 'digest/sha2'
 
+$stdout.sync = true # for heroku logs
+
 class TravisWebhook < Sinatra::Base
   set :token, ENV['TRAVIS_USER_TOKEN']
 
