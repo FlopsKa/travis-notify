@@ -7,9 +7,6 @@ $stdout.sync = true # for heroku logs
 class TravisWebhook < Sinatra::Base
   set :token, ENV['TRAVIS_USER_TOKEN']
 
-  @build_status = ""
-  @build_url = ""
-
   get '/' do
     "Usage: "
   end
@@ -17,8 +14,8 @@ class TravisWebhook < Sinatra::Base
   get '/notify' do
     content_type 'application/json'
     {
-      :status_message => @build_status,
-      :build_url => @build_url
+      :status_message => $build_status,
+      :build_url => $build_url
     }.to_json
   end
 
@@ -28,8 +25,8 @@ class TravisWebhook < Sinatra::Base
     else
       payload = JSON.parse(params[:payload])
       puts "Received valid payload for repository #{repo_slug}"
-      @build_status = payload['status_message']
-      @build_url = payload['build_url']
+      $build_status = payload['status_message']
+      $build_url = payload['build_url']
     end
   end
 
